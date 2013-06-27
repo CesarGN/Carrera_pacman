@@ -30,7 +30,7 @@ public class Estadio implements ActionListener {
         canvas.setBackground(Color.gray);
 
         jp2 = new JPanel();
-        jp2.setBounds(705, 5, 185, 350);
+        jp2.setBounds(706, 6, 186, 350);
         jp2.setBackground(Color.BLACK);
         jp2.setLayout(null);
 
