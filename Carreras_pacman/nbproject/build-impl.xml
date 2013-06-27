@@ -370,11 +370,14 @@ is divided into following sections:
             </and>
         </condition>
     </target>
+<<<<<<< HEAD
+=======
     <target name="-init-test-properties">
         <property name="test.binaryincludes" value="&lt;nothing&gt;"/>
         <property name="test.binarytestincludes" value=""/>
         <property name="test.binaryexcludes" value=""/>
     </target>
+>>>>>>> 16b938ef6b3a2d8e882c48d9091dcbdfbe1b2b35
     <target if="${nb.junit.single}" name="-init-macrodef-junit-single" unless="${nb.junit.batch}">
         <macrodef name="junit" uri="http://www.netbeans.org/ns/j2se-project/3">
             <attribute default="${includes}" name="includes"/>
@@ -398,7 +401,11 @@ is divided into following sections:
             </sequential>
         </macrodef>
     </target>
+<<<<<<< HEAD
+    <target if="${nb.junit.batch}" name="-init-macrodef-junit-batch" unless="${nb.junit.single}">
+=======
     <target depends="-init-test-properties" if="${nb.junit.batch}" name="-init-macrodef-junit-batch" unless="${nb.junit.single}">
+>>>>>>> 16b938ef6b3a2d8e882c48d9091dcbdfbe1b2b35
         <macrodef name="junit" uri="http://www.netbeans.org/ns/j2se-project/3">
             <attribute default="${includes}" name="includes"/>
             <attribute default="${excludes}" name="excludes"/>
@@ -538,10 +545,44 @@ is divided into following sections:
                     <jvmarg line="${debug-args-line}"/>
                     <jvmarg value="-Xrunjdwp:transport=${debug-transport},address=${jpda.address}"/>
                     <customize/>
+<<<<<<< HEAD
                 </junit>
             </sequential>
         </macrodef>
     </target>
+    <target if="${nb.junit.batch}" name="-init-macrodef-junit-debug-batch">
+        <macrodef name="junit-debug" uri="http://www.netbeans.org/ns/j2se-project/3">
+            <attribute default="${includes}" name="includes"/>
+            <attribute default="${excludes}" name="excludes"/>
+            <attribute default="**" name="testincludes"/>
+            <attribute default="" name="testmethods"/>
+            <element name="customize" optional="true"/>
+            <sequential>
+                <property name="junit.forkmode" value="perTest"/>
+                <junit dir="${work.dir}" errorproperty="tests.failed" failureproperty="tests.failed" fork="true" forkmode="${junit.forkmode}" showoutput="true" tempdir="${build.dir}">
+                    <batchtest todir="${build.test.results.dir}">
+                        <fileset dir="${test.src.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
+                            <filename name="@{testincludes}"/>
+                        </fileset>
+                    </batchtest>
+                    <syspropertyset>
+                        <propertyref prefix="test-sys-prop."/>
+                        <mapper from="test-sys-prop.*" to="*" type="glob"/>
+                    </syspropertyset>
+                    <formatter type="brief" usefile="false"/>
+                    <formatter type="xml"/>
+                    <jvmarg value="-ea"/>
+                    <jvmarg line="${debug-args-line}"/>
+                    <jvmarg value="-Xrunjdwp:transport=${debug-transport},address=${jpda.address}"/>
+                    <customize/>
+=======
+>>>>>>> 16b938ef6b3a2d8e882c48d9091dcbdfbe1b2b35
+                </junit>
+            </sequential>
+        </macrodef>
+    </target>
+<<<<<<< HEAD
+=======
     <target depends="-init-test-properties" if="${nb.junit.batch}" name="-init-macrodef-junit-debug-batch">
         <macrodef name="junit-debug" uri="http://www.netbeans.org/ns/j2se-project/3">
             <attribute default="${includes}" name="includes"/>
@@ -574,6 +615,7 @@ is divided into following sections:
             </sequential>
         </macrodef>
     </target>
+>>>>>>> 16b938ef6b3a2d8e882c48d9091dcbdfbe1b2b35
     <target depends="-init-macrodef-junit-debug,-init-macrodef-junit-debug-batch" if="${junit.available}" name="-init-macrodef-junit-debug-impl">
         <macrodef name="test-debug-impl" uri="http://www.netbeans.org/ns/j2se-project/3">
             <attribute default="${includes}" name="includes"/>
